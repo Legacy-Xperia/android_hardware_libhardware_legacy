@@ -491,6 +491,7 @@ int update_ctrl_interface(const char *config_file) {
                 memmove(iptr + mlen, iptr + ilen + 1, nread - (iptr + ilen + 1 - pbuf));
                 memset(iptr, '\n', mlen);
                 memcpy(iptr, ifc, strlen(ifc));
+#if 0
                 destfd = TEMP_FAILURE_RETRY(open(config_file, O_RDWR, 0660));
                 if (destfd < 0) {
                     ALOGE("Cannot update \"%s\": %s", config_file, strerror(errno));
@@ -499,6 +500,7 @@ int update_ctrl_interface(const char *config_file) {
                 }
                 TEMP_FAILURE_RETRY(write(destfd, pbuf, nread + mlen - ilen -1));
                 close(destfd);
+#endif
             }
         }
     }
